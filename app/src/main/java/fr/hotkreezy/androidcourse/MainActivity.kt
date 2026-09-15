@@ -22,6 +22,10 @@ import androidx.compose.foundation.text.input.TextFieldLineLimits
 import androidx.compose.foundation.text.input.TextFieldState
 import androidx.compose.foundation.text.input.rememberTextFieldState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Money
+import androidx.compose.material.icons.filled.Percent
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
@@ -34,6 +38,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
@@ -85,6 +90,7 @@ fun TipCalculatorLayout(
 		)
 		EditNumberField(
 			label = R.string.bill_amount,
+			leadingIcon = Icons.Default.Money,
 			state = textState,
 			keyboardOptions = KeyboardOptions.Default.copy(
 				imeAction = ImeAction.Next
@@ -95,6 +101,7 @@ fun TipCalculatorLayout(
 		)
 		EditNumberField(
 			label = R.string.how_was_the_service,
+			leadingIcon = Icons.Default.Percent,
 			state = tipState,
 			modifier = Modifier
 				.padding(bottom = 32.dp)
@@ -116,6 +123,7 @@ fun TipCalculatorLayout(
 @Composable
 fun EditNumberField(
 	@StringRes label: Int,
+	leadingIcon: ImageVector,
 	state: TextFieldState,
 	modifier: Modifier = Modifier,
 	keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
@@ -124,6 +132,9 @@ fun EditNumberField(
 		state = state,
 		modifier = modifier,
 		label = { Text(stringResource(label)) },
+		leadingIcon = {
+			Icon(leadingIcon, null)
+		},
 		keyboardOptions = keyboardOptions.copy(
 			keyboardType = KeyboardType.Number
 		),
